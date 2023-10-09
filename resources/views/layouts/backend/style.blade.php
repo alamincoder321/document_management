@@ -19,11 +19,12 @@
     }
 
     table.dataTable>thead {
-        background: #b3aaaa !important;
+        background: #e22a6f80 !important;
     }
 
     table.dataTable>thead>tr>th {
         padding: 2px 3px !important;
+        color:white;
     }
 
     table.dataTable>thead>tr>th:first-child {
