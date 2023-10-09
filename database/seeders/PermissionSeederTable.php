@@ -42,18 +42,6 @@ class PermissionSeederTable extends Seeder
                 ]
             ],
             [
-                'group_name' => 'AreaManager',
-                'permission_name' => [
-                    'areaManagerEntry',
-                ]
-            ],
-            [
-                'group_name' => 'Banner',
-                'permission_name' => [
-                    'bannerEntry',
-                ]
-            ],
-            [
                 'group_name' => 'Slider',
                 'permission_name' => [
                     'sliderEntry',
@@ -69,12 +57,6 @@ class PermissionSeederTable extends Seeder
                 'group_name' => 'NewsEvent',
                 'permission_name' => [
                     'newsandeventEntry',
-                ]
-            ],
-            [
-                'group_name' => 'Partner',
-                'permission_name' => [
-                    'partnerEntry',
                 ]
             ],
             [
@@ -102,13 +84,6 @@ class PermissionSeederTable extends Seeder
                 ]
             ],
             [
-                'group_name' => 'Worker',
-                'permission_name' => [
-                    'workerEntry',
-                    'assignWorkerService',
-                ]
-            ],
-            [
                 'group_name' => 'User',
                 'permission_name' => [
                     'userEntry',
@@ -120,15 +95,6 @@ class PermissionSeederTable extends Seeder
                 'permission_name' => [
                     'reportShow',
                     'paymentShow',
-                ]
-            ],
-            [
-                'group_name' => 'Order',
-                'permission_name' => [
-                    'orderList',
-                    'orderAssign',
-                    'orderComplete',
-                    'orderCancel',
                 ]
             ],
         ];
