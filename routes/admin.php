@@ -14,6 +14,9 @@ Route::group(["prefix" => "admin"], function () {
     // admin dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     
+    //branch access
+    Route::get('/branch-access/{id}', [DashboardController::class, 'branchAccess']);
+    
     //profile Route
     Route::get('/profile', [DashboardController::class, 'profileIndex'])->name('admin.profile');
     Route::post('/profile', [DashboardController::class, 'profileUpdate'])->name('admin.profile.update');

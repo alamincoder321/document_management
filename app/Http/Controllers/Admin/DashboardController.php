@@ -2,24 +2,34 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Admin;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
+    protected $branchId;
     public function __construct()
     {
         $this->middleware('auth:admin');
+
+        $this->middleware(function ($request, $next) {
+            $this->branchId = $request->session()->get('branch')->id;
+            return $next($request);
+        });
     }
 
     public function index()
     {
-        return view('admin.dashboard');
+        $users = User::where('branch_id', $this->branchId)->get();
+        return view('admin.dashboard', compact('users'));
     }
 
 
@@ -106,9 +116,20 @@ class DashboardController extends Controller
     {
         try {
             Auth::guard('admin')->logout();
+            Session::forget('branch');
             return send_response("Admin logout successfully", null, 200);
         } catch (\Throwable $e) {
             return send_error('Something went wrong', $e->getMessage(), $e->getCode());
         }
+    }
+
+    // branch access
+
+    public function branchAccess($id)
+    {
+        $branch = Branch::find($id);
+        Session::forget('branch');
+        Session::put('branch', $branch);
+        return redirect()->back();
     }
 }

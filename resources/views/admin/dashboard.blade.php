@@ -1,7 +1,12 @@
 @extends('layouts.backend_master')
 @section('title', 'Dashboard')
 @section('bread_crumb_title', 'Dashboard')
-@section('bread_crumb_subtitle', 'Dashboard')
+@section('bread_crumb_subtitle')
+Dashboard-
+@if(session()->has('branch'))
+{{session()->get('branch')->title}}
+@endif
+@endsection
 
 @section('content')
 
@@ -97,5 +102,15 @@
     </div>
 </div>
 <!-- Title Count End -->
+
+<div class="row">
+    <div class="col-12">
+        <ul>
+            @foreach($users as $user)
+            <li>{{$user->name}}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
 
 @endsection

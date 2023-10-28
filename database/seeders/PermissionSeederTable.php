@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Branch;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
@@ -20,12 +21,17 @@ class PermissionSeederTable extends Seeder
         Role::create(['name'=>'SuperAdmin']);
         Role::create(['name'=>'Admin']);
         Role::create(['name'=>'User']);
+        Branch::create([
+            'name' => 'Main Branch',
+            'title' => 'Main Branch'
+        ]);
         Admin::create([
             'name' => 'Admin',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
             'role_id' => 1,
-            'password' => Hash::make(1)
+            'password' => Hash::make(1),
+            'branch_id' => 1,
         ]);
 
         $permissions = [

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -35,6 +37,7 @@ class LoginController extends Controller
                 return send_error("Validation Error", $validator->errors(), 422);
             }
             if (Auth::guard('admin')->attempt(credentials($request->username, $request->password))) {
+                $this->branchinfo();
                 return send_response("Successfully Login", Auth::guard('admin')->user(), 200);
             } else {
                 return send_error("Unauthorized", ['username' => 'Username/email not valid'], 401);
@@ -42,5 +45,14 @@ class LoginController extends Controller
         } catch (\Throwable $e) {
             return send_error("Something went wrong", $e->getMessage(), $e->getCode());
         }
+    }
+
+    protected function branchinfo()
+    {
+        $data = Auth::guard('admin')->user();
+
+        $branch = Branch::find($data->branch_id);
+        Session::put('branch', $branch);
+        return true;
     }
 }

@@ -27,10 +27,17 @@
                     <div class="container-fluid">
                         <!-- Breadcrumb Start -->
                         <div class="breadcrumb-wrapper row">
-                            <div class="col-12 col-lg-3 col-md-6">
+                            <div class="col-12 col-md-4">
                                 <h4 class="page-title">@yield('bread_crumb_title')</h4>
                             </div>
-                            <div class="col-12 col-lg-9 col-md-6">
+                            <div class="col-md-2">
+                                <ul>
+                                    @foreach(App\Models\Branch::get() as $item)
+                                    <li class="{{session('branch')->id == $item->id ? 'bg-primary':''}}"><a class="text-dark" href="{{url('admin/branch-access', $item->id)}}">{{$item->title}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6">
                                 <ol class="breadcrumb float-right">
                                     <li><a href="index.html">Home</a></li>
                                     <li class="active">/ @yield('bread_crumb_subtitle')</li>

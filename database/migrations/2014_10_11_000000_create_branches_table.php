@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminAccessesTable extends Migration
+class CreateBranchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateAdminAccessesTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_accesses', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id')->constrained('admins', 'id')->onDelete('cascade');
-            $table->string('group_name', 100);
-            $table->string('permissions', 100);
-            $table->integer('branch_id')->default(1);
+            $table->string('name');
+            $table->string('title');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +29,6 @@ class CreateAdminAccessesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_accesses');
+        Schema::dropIfExists('branches');
     }
 }
