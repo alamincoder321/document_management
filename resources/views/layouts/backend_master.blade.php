@@ -33,7 +33,7 @@
                             <div class="col-md-2">
                                 <ul>
                                     @foreach(App\Models\Branch::get() as $item)
-                                    <li class="{{session('branch')->id == $item->id ? 'bg-primary':''}}"><a class="text-dark" href="{{url('admin/branch-access', $item->id)}}">{{$item->title}}</a></li>
+                                    <li class="{{session('branch')->id == $item->id ? 'bg-primary':''}} px-2"><a class="text-dark" href="{{url('admin/branch-access', $item->id)}}">{{$item->title}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>

@@ -47,6 +47,7 @@ class LoginController extends Controller
         }
     }
 
+    // branch set on session
     protected function branchinfo()
     {
         $data = Auth::guard('admin')->user();
